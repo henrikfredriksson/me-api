@@ -8,8 +8,7 @@
     "production": "NODE_ENV='production' node run.js",
     "lint": "standard --fix",
     "test": "jest",
-    "test:watch": "jest --watchAll",
-    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+    "test:watch": "jest --watchAll"
   },
   "license": "MIT",
   "dependencies": {
@@ -20,8 +19,6 @@
     "sqlite3": "^4.1.0"
   },
   "devDependencies": {
-    "codecov": "^3.6.1",
-    "coveralls": "^3.0.6",
     "jest": "^24.9.0",
     "nodemon": "^1.19.3",
     "standard": "^14.3.1",
