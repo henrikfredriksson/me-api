@@ -43,7 +43,5 @@ jobs:
 
       # run tests!
       - run:
-          name: 'Run Jest and Collect Coverage Reports'
-          command: yarn test --collectCoverage=true
-      - store_artifacts:
-          path: coverage
+          name: 'Run Jest'
+          command: yarn test
