@@ -9,7 +9,7 @@
     "lint": "standard --fix",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "test:codecov": "jest && codecov"
+    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
   "license": "MIT",
   "dependencies": {
