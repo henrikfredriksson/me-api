@@ -7,5 +7,4 @@ install:
   - yarn install
 
 script:
-  - yarn test
-  - yarn coversall
+  - yarn test --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
