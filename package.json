@@ -1,0 +1,33 @@
+{
+  "name": "me-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node run.js",
+    "debug": "nodemon run.js",
+    "production": "NODE_ENV='production' node run.js",
+    "lint": "standard --fix",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:all": "jest --watchAll --coverage"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "sqlite3": "^4.1.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.3",
+    "standard": "^14.3.1",
+    "supertest": "^4.0.2"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  }
+}
