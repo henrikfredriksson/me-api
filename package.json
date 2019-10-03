@@ -9,7 +9,7 @@
     "lint": "standard --fix",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "test:all": "jest --watchAll --coverage"
+    "test:codecov": "jest && codecov"
   },
   "license": "MIT",
   "dependencies": {
@@ -20,6 +20,7 @@
     "sqlite3": "^4.1.0"
   },
   "devDependencies": {
+    "codecov": "^3.6.1",
     "jest": "^24.9.0",
     "nodemon": "^1.19.3",
     "standard": "^14.3.1",
@@ -29,5 +30,9 @@
     "env": [
       "jest"
     ]
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }
