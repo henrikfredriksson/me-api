@@ -42,4 +42,8 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: yarn test
+      - run:
+          name: 'Run Jest and Collect Coverage Reports'
+          command: yarn test --collectCoverage=true
+      - store_artifacts:
+          path: coverage
