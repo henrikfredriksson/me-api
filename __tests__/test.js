@@ -13,3 +13,13 @@ describe('Test the index router "/"', () => {
     done()
   })
 })
+
+describe('Test the report routes', () => {
+  test('It should give correct status code', async done => {
+    const res = await request.get('/reports/week/1')
+
+    expect(res.statusCode).toBe(200)
+
+    done()
+  })
+})

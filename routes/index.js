@@ -5,7 +5,8 @@ router.get('/', function (req, res, next) {
   const me = {
     name: 'Henrik Fredriksson',
     email: 'hefa14@student.bth.se',
-    description: `
+    description: /* html */
+      `
     <h1>Välkommen!</h1>
 
     <p>
@@ -37,8 +38,7 @@ router.get('/', function (req, res, next) {
       När jag inte jobbar eller studerar så ägnas övrig tid åt idrott.Jag är bland annat ledare för
       ett ungdomslag i Karlskrona Handboll.Helgerna spenderas därför oftast i en inomhushall
       någonstans i Blekinge eller Småland.Helst en med kaffekopp i ena handen.
-    </p>
-    `
+    </p>`
   }
 
   res.json(me)

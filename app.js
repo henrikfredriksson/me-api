@@ -5,8 +5,15 @@ const app = express()
 
 const index = require('./routes/index')
 const reports = require('./routes/reports')
+const register = require('./routes/register')
 
 app.use(cors())
+
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
 // don't show the log when it is test
 if (process.env.NODE_ENV !== 'test') {
@@ -16,6 +23,8 @@ if (process.env.NODE_ENV !== 'test') {
 
 app.use('/', index)
 app.use(reports)
+
+app.use(register)
 
 // Testing routes with method
 app.get('/user', (req, res) => {
