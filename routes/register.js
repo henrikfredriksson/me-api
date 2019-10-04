@@ -17,18 +17,25 @@ router.post('/register', function (req, res, next) {
       console.error(err)
     }
 
-    db.run('INSERT INTO users (email, password) VALUES (?, ?)',
+    db.run('INSERT INTO users(email, password) VALUES(?, ?)',
       username,
       hash, err => {
         if (err) {
-          // returnera error
+          if (err.errno === 19) {
+            res.status(422).end('yes')
+            console.error(`User ${username} already exists`)
+          }
         }
-
-        // returnera korrekt svar
       })
 
-    res.status(200).end('yes')
+    db.close((err) => {
+      if (err) {
+        return console.error(err.message)
+      }
+      console.log('Close the database connection.')
+    })
+
+    res.status(200).json({ message: 'success' })
   })
 })
-
 module.exports = router
