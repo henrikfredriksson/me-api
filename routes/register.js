@@ -1,41 +1,49 @@
 const express = require('express')
 const router = express.Router()
 const sqlite3 = require('sqlite3').verbose()
-const db = new sqlite3.Database('./db/texts.sqlite')
+
 const bcrypt = require('bcryptjs')
 const saltRounds = 10
 
-router.post('/register', function (req, res, next) {
-  console.log(req.body)
-  var username = req.body.user
-  var password = req.body.password
+router.post('/register', async (req, res, next) => {
+  const db = new sqlite3.Database('./db/texts.sqlite')
+  const username = req.body.user
+  const password = req.body.password
+  const name = req.body.name
+  const birthday = req.body.birthday
 
-  console.log('User name = ' + username + ', password is ' + password)
+  const hashedPassword = await bcrypt.hash(password, saltRounds)
+    .catch(err => console.error(err))
 
-  bcrypt.hash(password, saltRounds, function (err, hash) {
-    if (err) {
-      console.error(err)
-    }
-
-    db.run('INSERT INTO users(email, password) VALUES(?, ?)',
-      username,
-      hash, err => {
-        if (err) {
-          if (err.errno === 19) {
-            res.status(422).end('yes')
-            console.error(`User ${username} already exists`)
+  db.run(
+    'INSERT INTO users(email, password, name, birthday) VALUES(?, ?,?,?)',
+    [username, hashedPassword, name, birthday],
+    err => {
+      if (err) {
+        console.error(err)
+        return res.status(500).json({
+          errors: {
+            status: 500,
+            source: '/register',
+            title: 'Database error',
+            detail: err.message
           }
+        })
+      }
+      return res.status(200).json({
+        data: {
+          status: 200,
+          source: '/register',
+          message: 'User successfully registered.'
         }
       })
-
-    db.close((err) => {
-      if (err) {
-        return console.error(err.message)
-      }
-      console.log('Close the database connection.')
     })
 
-    res.status(200).json({ message: 'success' })
+  db.close((err) => {
+    if (err) {
+      return console.error(err.message)
+    }
+    console.log('Close the database connection.')
   })
 })
 module.exports = router

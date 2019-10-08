@@ -6,6 +6,8 @@ const app = express()
 const index = require('./routes/index')
 const reports = require('./routes/reports')
 const register = require('./routes/register')
+const login = require('./routes/login')
+const users = require('./routes/users')
 
 app.use(cors())
 
@@ -25,6 +27,8 @@ app.use('/', index)
 app.use(reports)
 
 app.use(register)
+app.use(login)
+app.use(users)
 
 // Testing routes with method
 app.get('/user', (req, res) => {
