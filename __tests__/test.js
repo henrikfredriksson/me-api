@@ -1,8 +1,7 @@
 
 const fetch = require('node-fetch')
 
-// const endpoint = 'https://me-api.henrikfredriksson.me/'
-const endpoint = process.env.NODE_ENV !== 'production' ? 'http://localhost:5000/' : 'https://me-api.henrikfredriksson.me/'
+const endpoint = 'https://me-api.henrikfredriksson.me/'
 
 console.log(endpoint)
 
