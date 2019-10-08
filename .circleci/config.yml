@@ -43,5 +43,9 @@ jobs:
 
       # run tests!
       - run:
+          name: 'Install fetch'
+          command: yarn add node-fetch -g
+
+      - run:
           name: 'Run Jest'
           command: yarn test
