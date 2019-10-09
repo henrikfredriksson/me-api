@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const sqlite3 = require('sqlite3').verbose()
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 router.post('/login', (req, res, next) => {
   const db = new sqlite3.Database('./db/texts.sqlite')
@@ -40,13 +42,18 @@ router.post('/login', (req, res, next) => {
           console.error(err)
         })
 
-      // console.log(passwordMatch)
-
       if (passwordMatch) {
+        const payload = { email: username }
+        const secret = process.env.JWT_SECRET
+
+        const token = jwt.sign(payload, secret, { expiresIn: '1h' })
+
         return res.status(200).json({
           data: {
             status: 200,
-            message: 'Login successful'
+            message: 'Login successful',
+            user: user,
+            token: token
           }
         })
       }
