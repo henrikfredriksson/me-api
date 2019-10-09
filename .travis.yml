@@ -7,5 +7,4 @@ install:
   - yarn install
 
 script:
-  - yarn add node-fetch -g
   - yarn test
