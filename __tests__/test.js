@@ -7,7 +7,7 @@ const app = require('../server')
 // console.log(endpoint)
 
 describe('Test the index router "/"', () => {
-  test('It should response with presentation of me', done => {
+  test('It should response with presentation of me', () => {
     request(app)
       .get('/')
       .then(response => {
@@ -16,7 +16,6 @@ describe('Test the index router "/"', () => {
         expect(response.body.email).toBe('hefa14@student.bth.se')
       })
 
-    done()
   })
 })
 
