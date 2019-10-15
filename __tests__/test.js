@@ -1,3 +1,4 @@
+process.env.NODE_ENV = 'test'
 
 const request = require('supertest')
 const app = require('../server')
@@ -15,7 +16,6 @@ describe('Test the index router "/"', () => {
         expect(response.body.name).toBe('Henrik Fredriksson')
         expect(response.body.email).toBe('hefa14@student.bth.se')
       })
-
   })
 })
 

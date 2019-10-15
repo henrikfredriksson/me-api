@@ -12,7 +12,7 @@ router.post('/reports',
   }
 )
 
-function checkToken(req, res, next) {
+function checkToken (req, res, next) {
   const token = req.headers['x-access-token']
 
   console.log(token)
