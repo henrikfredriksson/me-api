@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const sqlite3 = require('sqlite3').verbose()
-const db = new sqlite3.Database('./db/texts.sqlite')
+const path = require('path')
 require('console.table')
 
 /**
@@ -11,6 +11,8 @@ require('console.table')
  * @route {GET} /users
  */
 router.get('/users', (req, res, next) => {
+  const db = new sqlite3.Database('./db/texts.sqlite')
+  const dbPath = path.resolve(__dirname, '../db/texts.sqlite')
   db.all('SELECT email, name FROM users',
     (err, rows) => {
       if (err) {
