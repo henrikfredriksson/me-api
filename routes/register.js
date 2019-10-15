@@ -1,12 +1,14 @@
 const express = require('express')
 const router = express.Router()
 const sqlite3 = require('sqlite3').verbose()
-
+const path = require('path')
 const bcrypt = require('bcryptjs')
 const saltRounds = 10
 
 router.post('/register', async (req, res, next) => {
-  const db = new sqlite3.Database('./db/texts.sqlite')
+  const dbPath = path.resolve(__dirname, '../db/texts.sqlite')
+  const db = new sqlite3.Database(dbPath)
+
   const username = req.body.user
   const password = req.body.password
   const name = req.body.name

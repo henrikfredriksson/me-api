@@ -18,13 +18,9 @@ describe('Reports', () => {
             throw err
           }
           response.statusCode.should.be.equal(200)
-
           response.body.name.should.be.equal('Henrik Fredriksson')
           response.body.email.should.be.equal('hefa14@student.bth.se')
-          // res.should.have.status(200)
           response.body.should.be.an('object')
-          // res.body.data.should.be.an('array')
-          // res.body.data.length.should.be.above(0)
           done()
         })
     })

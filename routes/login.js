@@ -3,10 +3,12 @@ const router = express.Router()
 const sqlite3 = require('sqlite3').verbose()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const path = require('path')
 require('dotenv').config()
 
 router.post('/login', (req, res, next) => {
-  const db = new sqlite3.Database('./db/texts.sqlite')
+  const dbPath = path.resolve(__dirname, '../db/texts.sqlite')
+  const db = new sqlite3.Database(dbPath)
 
   const username = req.body.user
   const password = req.body.password
