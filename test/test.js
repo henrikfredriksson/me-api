@@ -8,8 +8,8 @@ chai.should()
 
 chai.use(chaiHttp)
 
-describe('Reports', () => {
-  describe('GET /reports/kmom01', () => {
+describe('Routes', () => {
+  describe('GET /', () => {
     it('200 HAPPY PATH', (done) => {
       chai.request(app)
         .get('/')
@@ -18,9 +18,22 @@ describe('Reports', () => {
             throw err
           }
           response.statusCode.should.be.equal(200)
-          response.body.name.should.be.equal('Henrik Fredriksson')
-          response.body.email.should.be.equal('hefa14@student.bth.se')
           response.body.should.be.an('object')
+          done()
+        })
+    })
+  })
+
+  describe('GET /users', () => {
+    it('200 HAPPY PATH', (done) => {
+      chai.request(app)
+        .get('/users')
+        .end((err, response) => {
+          if (err) {
+            throw err
+          }
+          response.statusCode.should.be.equal(200)
+          response.body.should.be.an('array')
           done()
         })
     })

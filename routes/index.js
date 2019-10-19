@@ -1,11 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/', function (req, res, next) {
-  const me = {
-    name: 'Henrik Fredriksson',
-    email: 'hefa14@student.bth.se',
-    description: /* html */
+router.get('/', function (req, res) {
+  const data = {
+    bodytext:
       `
       <h1>Välkommen!</h1>
       <p>Detta är min me- sida i kursen jsramverk på Blekinge Tekniska Högskola.
@@ -37,7 +35,7 @@ router.get('/', function (req, res, next) {
       `
   }
 
-  res.json(me)
+  res.json(data)
 })
 
 module.exports = router

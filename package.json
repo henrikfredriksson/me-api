@@ -8,7 +8,9 @@
     "production": "NODE_ENV='production' node app.js",
     "lint": "standard --fix",
     "test": "mocha",
-    "test:coverage": "nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000"
+    "test:watch": "mocha --watch --recursive",
+    "test:coverage": "nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000",
+    "deploy": "rsync -av --exclude node_modules --exclude db . deploy@68.183.66.184:git/me-api"
   },
   "license": "MIT",
   "dependencies": {

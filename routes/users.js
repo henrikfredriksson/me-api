@@ -11,8 +11,9 @@ require('console.table')
  * @route {GET} /users
  */
 router.get('/users', (req, res, next) => {
-  const db = new sqlite3.Database('./db/texts.sqlite')
   const dbPath = path.resolve(__dirname, '../db/texts.sqlite')
+  const db = new sqlite3.Database(dbPath)
+
   db.all('SELECT email, name FROM users',
     (err, rows) => {
       if (err) {

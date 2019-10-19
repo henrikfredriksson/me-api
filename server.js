@@ -4,6 +4,7 @@ const cors = require('cors')
 const app = express()
 
 const index = require('./routes/index')
+const about = require('./routes/about')
 const reports = require('./routes/reports')
 const register = require('./routes/register')
 const login = require('./routes/login')
@@ -24,8 +25,8 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 app.use('/', index)
+app.use(about)
 app.use(reports)
-
 app.use(register)
 app.use(login)
 app.use(users)
